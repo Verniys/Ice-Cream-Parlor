@@ -1,0 +1,43 @@
+/*
+ * Custom CSS
+ */
+
+:root {
+  --bs-body-bg: var(--bs-gray-100);
+}
+
+#preview {
+  height: 400px;
+  width: 100px;
+  position: relative;
+}
+
+#preview img {
+  object-fit: cover;
+}
+
+#preview .square{
+  height: 100px;
+  width: 100px;
+}
+
+#preview .cone {
+  width: 100px;
+}
+
+#preview .bottom {
+  margin-top: 90px;
+}
+
+#preview .middle {
+  margin-top: 45px;
+}
+
+#parlor button{
+  width: 150px;
+}
+
+.btn-group .input-group-text{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
