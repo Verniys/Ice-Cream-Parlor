@@ -1,323 +1,273 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Verniy's Ice Cream Parlor</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Ice Cream!</title>
+    <!-- Favicon-->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍦</text></svg>">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="css/custom.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="container my-5">
-    <h1>Verniy's Ice Cream Parlor!</h1>
-    <div class="col-lg-8 px-0">
-      <br/>
-      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <div class="input-group-text">Number of Scoops</div>
-        <input type="radio" class="btn-check" name="radBases" id="radBases1" onclick="updateList()" autocomplete="off"
-          checked>
-        <label class="btn btn-outline-primary" for="radBases1">1</label>
-
-        <input type="radio" class="btn-check" name="radBases" id="radBases2" onclick="updateList()" autocomplete="off">
-        <label class="btn btn-outline-primary" for="radBases2">2</label>
-
-        <input type="radio" class="btn-check" name="radBases" id="radBases3" onclick="updateList()" autocomplete="off">
-        <label class="btn btn-outline-primary" for="radBases3">3</label>
-      </div>
-
-      <hr class="col-1 my-4">
-
-      <h1 id="code"></h1>
-
-      <hr class="col-1 my-4">
-
-      <div class="row">
-        <div id="parlor" class="col-6 col-sm-4 mx-auto">
-          <div class="btn-group-vertical p-1" role="group" aria-label="Vertical button group">
-            <button type="button" id="btnTopTop" class="btn btn-primary" data-bs-toggle="modal" value="00"
-              data-bs-target="#modalTopping">Top Topping</button>
-            <button type="button" id="btnTopSyr" class="btn btn-primary" data-bs-toggle="modal" value="00"
-              data-bs-target="#modalSyrup">Top Syrup</button>
-            <button type="button" id="btnTopBse" class="btn btn-primary" data-bs-toggle="modal" value="01"
-              data-bs-target="#modalBase">Top Flavour</button>
-          </div>
-          <div class="btn-group-vertical p-1" role="group" aria-label="Vertical button group">
-            <button type="button" id="btnMidSyr" class="btn btn-primary" data-bs-toggle="modal" value="00"
-              data-bs-target="#modalSyrup">Middle Syrup</button>
-            <button type="button" id="btnMidBse" class="btn btn-primary" data-bs-toggle="modal" value="01"
-              data-bs-target="#modalBase">Middle Flavour</button>
-          </div>
-          <div class="btn-group-vertical p-1" role="group" aria-label="Vertical button group">
-            <button type="button" id="btnBtmSyr" class="btn btn-primary" data-bs-toggle="modal" value="00"
-              data-bs-target="#modalSyrup">Bottom Syrup</button>
-            <button type="button" id="btnBtmBse" class="btn btn-primary" data-bs-toggle="modal" value="01"
-              data-bs-target="#modalBase">Bottom Flavour</button>
-          </div>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">Verniys</a>
         </div>
+    </nav>
+    <!-- Product section-->
+    <section class="pt-5">
+        <div class="container px-4 px-lg-5">
+            <div class="shelf row gx-4 gx-lg-5 flex-column">
+                <div class="h-100 d-none d-md-block p-0" style="width: 0px;"></div>
+                <div class="col-md-6 d-flex flex-column" id="info">
+                    <a class="small mb-1 mx-auto ms-md-0 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="https://twitter.com/LilRedBeanArt">@lilRedBeanArt</a>
+                    <h1 class="display-5 fw-bolder mx-auto ms-md-0">Ice Cream</h1>
+                    <div class="fs-5 mb-3 mx-auto ms-md-0 pe-md-1 position-relative">
+                        <span id="code"></span>
+                        <i id="clipboard" class="bi bi-clipboard ms-3 pe-2 stretched-link" data-bs-toggle="tooltip"
+                            data-bs-title="Copy to clipboard" data-bs-placement="right" onclick="copyCode()"></i>
+                    </div>
+                    <div class="d-flex mb-3 mx-auto ms-md-0">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <div class="input-group-text">Scoops</div>
+                            <input type="radio" class="btn-check" name="radBases" id="radBases1" onclick="updateList()"
+                                autocomplete="off" checked>
+                            <label class="btn btn-outline-dark" for="radBases1">1</label>
 
-        <div class="col-6 col-sm-2">
-          <div id="preview" class="position-relative mx-auto">
-            <img id="imgTopCon" src="image/Cone/Cone.png" class="position-absolute top-0 start-0 cone top">
-            <img id="imgMidCon" src="image/Cone/Cone.png" class="position-absolute top-0 start-0 cone middle">
-            <img id="imgBtmCon" src="image/Cone/Cone.png" class="position-absolute top-0 start-0 cone bottom">
-            <img id="imgBtmBse" src="image/Base/01.png" class="position-absolute top-0 start-0 square bottom">
-            <img id="imgBtmSyr" src="image/Syrup/00.png" class="position-absolute top-0 start-0 square bottom">
-            <img id="imgMidBse" src="image/Base/01.png" class="position-absolute top-0 start-0 square middle">
-            <img id="imgMidSyr" src="image/Syrup/00.png" class="position-absolute top-0 start-0 square middle">
-            <img id="imgTopBse" src="image/Base/01.png" class="position-absolute top-0 start-0 square top">
-            <img id="imgTopSyr" src="image/Syrup/00.png" class="position-absolute top-0 start-0 square top">
-            <img id="imgTopTop" src="image/Topping/00.png" class="position-absolute top-0 start-0 square top">
-          </div>
+                            <input type="radio" class="btn-check" name="radBases" id="radBases2" onclick="updateList()"
+                                autocomplete="off">
+                            <label class="btn btn-outline-dark" for="radBases2">2</label>
+
+                            <input type="radio" class="btn-check" name="radBases" id="radBases3" onclick="updateList()"
+                                autocomplete="off">
+                            <label class="btn btn-outline-dark" for="radBases3">3</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="upperPreview" class="col-md-6 order-md-first d-flex align-items-center"
+                    style="min-height: 300px">
+                    <div id="preview" class="position-relative mx-auto" style="width: 100px;height: 300px;">
+                        <img id="imgTopCon" src="image/Cone/Cone.png" class="position-absolute top">
+                        <img id="imgMidCon" src="image/Cone/Cone.png" class="position-absolute middle">
+                        <img id="imgBtmCon" src="image/Cone/Cone.png" class="position-absolute bottom">
+                        <img id="imgBtmBse" src="image/Base/01.png" class="position-absolute bottom">
+                        <img id="imgBtmSyr" src="image/Syrup/00.png" class="position-absolute bottom">
+                        <img id="imgMidBse" src="image/Base/01.png" class="position-absolute middle">
+                        <img id="imgMidSyr" src="image/Syrup/00.png" class="position-absolute middle">
+                        <img id="imgTopBse" src="image/Base/01.png" class="position-absolute top">
+                        <img id="imgTopSyr" src="image/Syrup/00.png" class="position-absolute top">
+                        <img id="imgTopTop" src="image/Topping/00.png" class="position-absolute top">
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex flex-column">
+                    <div id="parlor" class="col-6 col-sm-4 mb-5 mx-auto mx-md-0">
+                        <div class="btn-group-vertical py-1" role="group" aria-label="Vertical button group">
+                            <button type="button" id="btnTopTop" class="btn btn-pastel" data-bs-toggle="modal"
+                                value="00" data-bs-target="#modalTopping">Top Topping</button>
+                            <button type="button" id="btnTopSyr" class="btn btn-pastel" data-bs-toggle="modal"
+                                value="00" data-bs-target="#modalSyrup">Top Syrup</button>
+                            <button type="button" id="btnTopBse" class="btn btn-pastel" data-bs-toggle="modal"
+                                value="01" data-bs-target="#modalBase">Top Flavour</button>
+                        </div>
+                        <div class="btn-group-vertical py-1" role="group" aria-label="Vertical button group">
+                            <button type="button" id="btnMidSyr" class="btn btn-pastel" data-bs-toggle="modal"
+                                value="00" data-bs-target="#modalSyrup">Middle Syrup</button>
+                            <button type="button" id="btnMidBse" class="btn btn-pastel" data-bs-toggle="modal"
+                                value="01" data-bs-target="#modalBase">Middle Flavour</button>
+                        </div>
+                        <div class="btn-group-vertical py-1" role="group" aria-label="Vertical button group">
+                            <button type="button" id="btnBtmSyr" class="btn btn-pastel" data-bs-toggle="modal"
+                                value="00" data-bs-target="#modalSyrup">Bottom Syrup</button>
+                            <button type="button" id="btnBtmBse" class="btn btn-pastel" data-bs-toggle="modal"
+                                value="01" data-bs-target="#modalBase">Bottom Flavour</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-      </div>
+    </section>
+    <!-- Related items section-->
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5">
+            <p class="lead"> Indulge in our deliciously creamy and refreshing ice cream! </p>
+            <p class="lead"> Our flavors are made with only the finest ingredients, including fresh milk and
+                cream, real fruits, and premium chocolate. Whether you're in the mood for classic vanilla or
+                want to try something more adventurous like our salted caramel or cookie dough, we've got you
+                covered. Plus, with our wide range of toppings and mix-ins, you can customize your treat to your
+                heart's content.</p>
+            <p class="lead"> Come cool off with us and treat yourself to a scoop (or two!) of our irresistible
+                ice cream today!</p>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Verniys 2023</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="modalBase" tabindex="-1" aria-labelledby="modalBaseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalBaseLabel">Edit Flavour</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row justify-content-center mb-3" hidden>
+                            <div class="col-auto">
+                                <label for="modalBaseTarget" class="col-form-label">Target</label>
+                            </div>
+                            <div class="col-auto">
+                                <input id="modalBaseTarget" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="container text-center">
+                            <div class="row row-cols-3 row-cols-md-6">
+                                <img class="col p-0" src="image/Base/01.png" value="01">
+                                <img class="col p-0" src="image/Base/02.png" value="02">
+                                <img class="col p-0" src="image/Base/03.png" value="03">
+                                <img class="col p-0" src="image/Base/04.png" value="04">
+                                <img class="col p-0" src="image/Base/05.png" value="05">
+                                <img class="col p-0" src="image/Base/06.png" value="06">
+                                <img class="col p-0" src="image/Base/07.png" value="07">
+                                <img class="col p-0" src="image/Base/08.png" value="08">
+                                <img class="col p-0" src="image/Base/09.png" value="09">
+                                <img class="col p-0" src="image/Base/10.png" value="10">
+                                <img class="col p-0" src="image/Base/11.png" value="11">
+                                <img class="col p-0" src="image/Base/12.png" value="12">
+                                <img class="col p-0" src="image/Base/13.png" value="13">
+                                <img class="col p-0" src="image/Base/14.png" value="14">
+                                <img class="col p-0" src="image/Base/15.png" value="15">
+                                <img class="col p-0" src="image/Base/16.png" value="16">
+                                <img class="col p-0" src="image/Base/17.png" value="17">
+                                <img class="col p-0" src="image/Base/18.png" value="18">
+                                <img class="col p-0" src="image/Base/19.png" value="19">
+                                <img class="col p-0" src="image/Base/20.png" value="20">
+                                <img class="col p-0" src="image/Base/21.png" value="21">
+                                <img class="col p-0" src="image/Base/22.png" value="22">
+                                <img class="col p-0" src="image/Base/23.png" value="23">
+                                <img class="col p-0" src="image/Base/24.png" value="24">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="modalBase" tabindex="-1" aria-labelledby="modalBaseLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modalBaseLabel">Edit Flavour</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row justify-content-center mb-3" hidden>
-              <div class="col-auto">
-                <label for="modalBaseTarget" class="col-form-label">Target</label>
-              </div>
-              <div class="col-auto">
-                <input id="modalBaseTarget" class="form-control" type="text">
-              </div>
+    <div class="modal fade" id="modalSyrup" tabindex="-1" aria-labelledby="modalSyrupLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalSyrupLabel">Edit Syrup</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row justify-content-center mb-3" hidden>
+                            <div class="col-auto">
+                                <label for="modalSyrupTarget" class="col-form-label">Target</label>
+                            </div>
+                            <div class="col-auto">
+                                <input id="modalSyrupTarget" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="container text-center">
+                            <div class="row row-cols-2 row-cols-md-4">
+                                <img class="col p-0" src="image/Syrup/01.png" value="01">
+                                <img class="col p-0" src="image/Syrup/02.png" value="02">
+                                <img class="col p-0" src="image/Syrup/03.png" value="03">
+                                <img class="col p-0" src="image/Syrup/04.png" value="04">
+                                <img class="col p-0" src="image/Syrup/05.png" value="05">
+                                <img class="col p-0" src="image/Syrup/06.png" value="06">
+                                <img class="col p-0" src="image/Syrup/07.png" value="07">
+                                <img class="col p-0" src="image/Syrup/08.png" value="08">
+                                <img class="col p-0" src="image/Syrup/09.png" value="09">
+                                <img class="col p-0" src="image/Syrup/10.png" value="10">
+                                <img class="col p-0" src="image/Syrup/11.png" value="11">
+                                <img class="col p-0" src="image/Syrup/12.png" value="12">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" src="image/Syrup/00.png" id="btnRemoveSyrup"
+                        value="00">Remove Syrup</button>
+                    <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cancel</button>
+                </div>
             </div>
-            <div class="container text-center">
-              <div class="row row-cols-3 row-cols-md-6">
-                <div class="col p-0">
-                  <img src="image/Base/01.png" value="01" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/02.png" value="02" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/03.png" value="03" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/04.png" value="04" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/05.png" value="05" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/06.png" value="06" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/07.png" value="07" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/08.png" value="08" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/09.png" value="09" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/10.png" value="10" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/11.png" value="11" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/12.png" value="12" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/13.png" value="13" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/14.png" value="14" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/15.png" value="15" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/16.png" value="16" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/17.png" value="17" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/18.png" value="18" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/19.png" value="19" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/20.png" value="20" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/21.png" value="21" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/22.png" value="22" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/23.png" value="23" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Base/24.png" value="24" class="img-fluid rounded mx-auto d-block">
-                </div>
-              </div>
-            </div>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="modalSyrup" tabindex="-1" aria-labelledby="modalSyrupLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modalSyrupLabel">Edit Syrup</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row justify-content-center mb-3" hidden>
-              <div class="col-auto">
-                <label for="modalSyrupTarget" class="col-form-label">Target</label>
-              </div>
-              <div class="col-auto">
-                <input id="modalSyrupTarget" class="form-control" type="text">
-              </div>
+    <div class="modal fade" id="modalTopping" tabindex="-1" aria-labelledby="modalToppingLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalToppingLabel">Edit Topping</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row justify-content-center mb-3" hidden>
+                            <div class="col-auto">
+                                <label for="modalToppingTarget" class="col-form-label">Target</label>
+                            </div>
+                            <div class="col-auto">
+                                <input id="modalToppingTarget" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="container text-center">
+                            <div class="row row-cols-2 row-cols-md-4">
+                                <img class="col p-0" src="image/Topping/01.png" value="01">
+                                <img class="col p-0" src="image/Topping/02.png" value="02">
+                                <img class="col p-0" src="image/Topping/03.png" value="03">
+                                <img class="col p-0" src="image/Topping/04.png" value="04">
+                                <img class="col p-0" src="image/Topping/05.png" value="05">
+                                <img class="col p-0" src="image/Topping/06.png" value="06">
+                                <img class="col p-0" src="image/Topping/07.png" value="07">
+                                <img class="col p-0" src="image/Topping/08.png" value="08">
+                                <img class="col p-0" src="image/Topping/09.png" value="09">
+                                <img class="col p-0" src="image/Topping/10.png" value="10">
+                                <img class="col p-0" src="image/Topping/11.png" value="11">
+                                <img class="col p-0" src="image/Topping/12.png" value="12">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" src="image/Topping/00.png" id="btnRemoveTopping"
+                        value="00">Remove Topping</button>
+                    <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cancel</button>
+                </div>
             </div>
-            <div class="container text-center">
-              <div class="row row-cols-2 row-cols-md-4">
-                <div class="col p-0">
-                  <img src="image/Syrup/01.png" value="01" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/02.png" value="02" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/03.png" value="03" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/04.png" value="04" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/05.png" value="05" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/06.png" value="06" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/07.png" value="07" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/08.png" value="08" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/09.png" value="09" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/10.png" value="10" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/11.png" value="11" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Syrup/12.png" value="12" class="img-fluid rounded mx-auto d-block">
-                </div>
-              </div>
-            </div>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" src="image/Syrup/00.png" id="btnRemoveSyrup" value="00">Remove
-            Syrup</button>
-          <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="modalTopping" tabindex="-1" aria-labelledby="modalToppingLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modalToppingLabel">Edit Topping</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row justify-content-center mb-3" hidden>
-              <div class="col-auto">
-                <label for="modalToppingTarget" class="col-form-label">Target</label>
-              </div>
-              <div class="col-auto">
-                <input id="modalToppingTarget" class="form-control" type="text">
-              </div>
-            </div>
-            <div class="container text-center">
-              <div class="row row-cols-2 row-cols-md-4">
-                <div class="col p-0">
-                  <img src="image/Topping/01.png" value="01" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/02.png" value="02" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/03.png" value="03" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/04.png" value="04" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/05.png" value="05" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/06.png" value="06" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/07.png" value="07" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/08.png" value="08" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/09.png" value="09" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/10.png" value="10" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/11.png" value="11" class="img-fluid rounded mx-auto d-block">
-                </div>
-                <div class="col p-0">
-                  <img src="image/Topping/12.png" value="12" class="img-fluid rounded mx-auto d-block">
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" src="image/Topping/00.png" id="btnRemoveTopping"
-            value="00">Remove Topping</button>
-          <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
-  <script src="main.js"></script>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
 </body>
 
 </html>

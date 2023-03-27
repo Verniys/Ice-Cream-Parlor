@@ -1,11 +1,10 @@
-//
-// Place any custom JS here
-//
-// How many Ice Creams do you want? 
-// 1 (Top)
-// 2 (Top, Bottom)
-// 3 (Top, Mid, Bottom)
-
+/*!
+* Start Bootstrap - Shop Item v5.0.6 (https://startbootstrap.com/template/shop-item)
+* Copyright 2013-2023 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-item/blob/master/LICENSE)
+*/
+// This file is intentionally blank
+// Use this file to add JavaScript to your project
 
 const modalBase = document.getElementById('modalBase')
 modalBase.addEventListener('show.bs.modal', event => {
@@ -120,6 +119,7 @@ function updateCode() {
     }
 };
 
+const preview = document.getElementById("preview")
 
 const imgBtmCon = document.getElementById("imgBtmCon")
 const imgBtmBse = document.getElementById("imgBtmBse")
@@ -134,8 +134,12 @@ const imgTopTop = document.getElementById("imgTopTop")
 const btnRemoveSyrup = document.getElementById("btnRemoveSyrup")
 const btnRemoveTopping = document.getElementById("btnRemoveTopping")
 
+// TODO make a 2D array list an map it there
 function updateList() {
     if (radBases1.checked) {
+        preview.classList.add("bottom");
+        preview.classList.remove("middle");
+        
         btnBtmBse.hidden = true
         btnBtmSyr.hidden = true
         btnMidBse.hidden = true
@@ -152,6 +156,9 @@ function updateList() {
         imgTopSyr.hidden = false
         imgTopTop.hidden = false
     } else if (radBases2.checked) {
+        preview.classList.remove("bottom");
+        preview.classList.add("middle");
+
         btnBtmBse.hidden = true
         btnBtmSyr.hidden = true
         btnMidBse.hidden = false
@@ -168,6 +175,9 @@ function updateList() {
         imgTopSyr.hidden = false
         imgTopTop.hidden = false
     } else if (radBases3.checked) {
+        preview.classList.remove("bottom");
+        preview.classList.remove("middle");
+
         btnBtmBse.hidden = false
         btnBtmSyr.hidden = false
         btnMidBse.hidden = false
@@ -193,6 +203,27 @@ btnRemoveSyrup.addEventListener('click', event => {
 btnRemoveTopping.addEventListener('click', event => {
     modalToppingImgClick(btnRemoveTopping)
 })
+
+// Enable tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+const clipboard = document.getElementById("clipboard")
+const clipboardTooltip = bootstrap.Tooltip.getInstance('#clipboard') 
+
+// Click to copy
+const delay = ms => new Promise(res => setTimeout(res, ms));
+async function copyCode() {
+    navigator.clipboard.writeText(code.innerHTML);
+    // code.setAttribute("data-bs-title", "Copied!")
+    clipboardTooltip.setContent({ '.tooltip-inner': 'Copied!' })
+
+    clipboard.classList.replace("bi-clipboard", "bi-check2")
+    await delay(3000);
+    // code.setAttribute("data-bs-title", "Copy to clipboard")
+    clipboardTooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' })
+
+    clipboard.classList.replace("bi-check2", "bi-clipboard")
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     updateList()
